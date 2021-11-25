@@ -11,13 +11,17 @@ namespace TestProjectMoodeStabil
     public class UnitTestDatabase
     {
         IPiDataManager mgr;
-        public StartUp() => mgr = new PiDataManager();
+        [TestInitialize]
+        public void StartUp() {
+            mgr = new PiDataManager(new AndreasDatabaseContext());
+        }
 
         [TestMethod]
         public void TestMethodAdd()
         {
 
             DateTime dateData = DateTime.Now;
+            
             Subjects sub = new Subjects(1, "Programmering", dateData);
             List<Subjects> subjects = mgr.GetSubjects();
 
@@ -30,7 +34,7 @@ namespace TestProjectMoodeStabil
             Assert.AreEqual(countOriData + 1, countdata);
 
         }
-
+        //test date på subject en weekend
         [TestMethod]
         [ExpectedException(typeof(Exception))]
         public void TestMethodAddException()
