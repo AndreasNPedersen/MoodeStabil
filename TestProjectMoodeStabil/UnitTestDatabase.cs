@@ -1,24 +1,63 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ModelLib;
+using MoodeStabil.Manager;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace TestProjectMoodeStabil
 {
     [TestClass]
-    class UnitTestDatabase
+    public class UnitTestDatabase
     {
+        IPiDataManager mgr;
+        public StartUp() => mgr = new PiDataManager();
 
         [TestMethod]
         public void TestMethodAdd()
         {
-            PiData data = new PiData(1,DateTime.Now,DateTime.Now,1,new Subjects(1,"Programmering",DateTime.Now));
 
+            DateTime dateData = DateTime.Now;
+            Subjects sub = new Subjects(1, "Programmering", dateData);
+            List<Subjects> subjects = mgr.GetSubjects();
+
+            // made the data, data from Pi
+            PiData data = new PiData(dateData,dateData,sub);
+            int countOriData = mgr.GetAllPiData().length;
+            mgr.AddPiData(dateData);
+            int countdata = mgr.GetAllPiData().length;
+            Assert.AreEqual(data, mgr.GetAllPiData().find(c => c.Date));
+            Assert.AreEqual(countOriData + 1, countdata);
 
         }
 
+        [TestMethod]
+        [ExpectedException(typeof(Exception))]
+        public void TestMethodAddException()
+        {
+            DateTime dateData = DateTime.Parse("6/19/2015 10:35:50");
+            mgr.AddPiData(dateData);
+        }
+
+        [TestMethod]
+        public void TestMethodGetAllPiData()
+        {
+            DateTime dateData = DateTime.Now;
+            Subjects sub = new Subjects(1, "Programmering", dateData);
+            List<Subjects> subjects = mgr.GetSubjects();
+
+            // made the data, data from Pi
+            PiData data = new PiData(dateData, dateData, sub);
+            Assert.AreEqual(data, mgr.GetAllPiData().find(c => c.Date));
+        }
+        [TestMethod]
+        public void TestMethodGetAllSubjectsData()
+        {
+            Subjects sub = new Subjects(1, "Programmering", dateData);
+            List<Subjects> subjects = mgr.GetSubjects();
+            Assert.AreEqual(sub, subjects[0]);
+        }
+
     }
+    
 }
