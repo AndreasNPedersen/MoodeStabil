@@ -6,11 +6,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace TestProjectMoodeStabil
 {
     public class UnitTestChagningTime
     {
-        private ImanageSubjects mgr;
+        private IManageSubjects mgr;
         private  List<Subjects> subjects;
         [TestInitialize]
         public void StartUp()
