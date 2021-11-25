@@ -18,14 +18,77 @@ namespace MoodeStabil.Manager
             List<Subjects> subjects = _database.Subjects.ToList<Subjects>();
             foreach (Subjects sub in subjects)
             {
-                if (sub.SubjectMeetTime)
+                if (sub.SubjectMeetTime.Value.Date.DayOfWeek == DayOfWeek.Monday && date.DayOfWeek == DayOfWeek.Monday)
+                {
+                    try
+                    {
+                    _database.Add(new PiData(date,sub.SubjectMeetTime,sub));
+                        return true;
+                    }catch(Exception ex)
+                    {
+                        Console.WriteLine("fejl " + ex.Message);
+                        return false;
+                    }
+                }
+                else if (sub.SubjectMeetTime.Value.Date.DayOfWeek == DayOfWeek.Tuesday && date.DayOfWeek == DayOfWeek.Tuesday)
+                {
+                    try
+                    {
+                        _database.Add(new PiData(date, sub.SubjectMeetTime, sub));
+                        return true;
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("fejl " + ex.Message);
+                        return false;
+                    }
+                }
+                else if (sub.SubjectMeetTime.Value.Date.DayOfWeek == DayOfWeek.Wednesday && date.DayOfWeek == DayOfWeek.Wednesday)
+                {
+                    try
+                    {
+                        _database.Add(new PiData(date, sub.SubjectMeetTime, sub));
+                        return true;
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("fejl " + ex.Message);
+                        return false;
+                    }
+                }
+                else if (sub.SubjectMeetTime.Value.Date.DayOfWeek == DayOfWeek.Thursday && date.DayOfWeek == DayOfWeek.Thursday)
+                {
+                    try
+                    {
+                        _database.Add(new PiData(date, sub.SubjectMeetTime, sub));
+                        return true;
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("fejl " + ex.Message);
+                        return false;
+                    }
+                }
+                else if (sub.SubjectMeetTime.Value.Date.DayOfWeek == DayOfWeek.Friday && date.DayOfWeek == DayOfWeek.Friday)
+                {
+                    try
+                    {
+                        _database.Add(new PiData(date, sub.SubjectMeetTime, sub));
+                        return true;
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("fejl " + ex.Message);
+                        return false;
+                    }
+                }
             }
-            _database.Add(new PiData(date,));
+            return false;
         }
 
         public IEnumerable<PiData> GetAllPiData()
         {
-            throw new NotImplementedException();
+            return _database.PiData.ToList();
         }
     }
 }

@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ModelLib;
+using MoodeStabil.Manager;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,11 +14,17 @@ namespace MoodeStabil.Controllers
     [ApiController]
     public class PiDataController : ControllerBase
     {
+        IPiDataManager mgr;
+
+        public PiDataController(AndreasDatabaseContext _database)
+        {
+            mgr = new PiDataManager(_database);
+        }
         // GET: api/<PiDataController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IEnumerable<PiData> Get()
         {
-            return new string[] { "value1", "value2" };
+            return mgr.GetAllPiData();
         }
 
         // GET api/<PiDataController>/5
@@ -28,8 +36,9 @@ namespace MoodeStabil.Controllers
 
         // POST api/<PiDataController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] DateTime value)
         {
+            mgr.AddPiData(value);
         }
 
         // PUT api/<PiDataController>/5
