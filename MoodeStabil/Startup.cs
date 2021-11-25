@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using MoodeStabil.Manager;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,6 +32,7 @@ namespace MoodeStabil
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "MoodeStabil", Version = "v1" });
             });
+            services.AddSingleton<IPiDataManager, PiDataManager>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

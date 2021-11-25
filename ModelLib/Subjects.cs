@@ -25,5 +25,14 @@ namespace ModelLib
         public DateTime? SubjectMeetTime { get; set; }
 
         public virtual ICollection<PiData> PiData { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            return obj is Subjects subjects &&
+                   Id == subjects.Id &&
+                   SubjectName == subjects.SubjectName &&
+                   SubjectMeetTime == subjects.SubjectMeetTime &&
+                   EqualityComparer<ICollection<PiData>>.Default.Equals(PiData, subjects.PiData);
+        }
     }
 }
