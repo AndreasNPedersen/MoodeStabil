@@ -15,8 +15,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ModelLib\ModelLib.csproj" />
-    <ProjectReference Include="..\TestProjectMoodeStabil\TestProjectMoodeStabil.csproj" />
+	  <ProjectReference Include="..\ModelLib\ModelLib.csproj" />
+	  <ProjectReference Include="..\UDPReciverPI\UDPReciverPI.csproj" />
   </ItemGroup>
 
 </Project>

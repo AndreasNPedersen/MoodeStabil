@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -32,7 +33,9 @@ namespace MoodeStabil
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "MoodeStabil", Version = "v1" });
             });
-            services.AddSingleton<IPiDataManager, PiDataManager>();
+            services.AddDbContext<AndreasDatabaseContext>(opt =>
+                opt.UseSqlServer("Data Source=andreas-zealand-server-dk.database.windows.net;Initial Catalog=Andreas-database;User ID=Andreas;Password=SecretPassword!;Connect Timeout=30;Encrypt=True;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"));
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
