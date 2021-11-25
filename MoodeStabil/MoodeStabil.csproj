@@ -12,7 +12,11 @@
 
   <ItemGroup>
     <Folder Include="Models\" />
-    <Folder Include="Manager\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ModelLib\ModelLib.csproj" />
+    <ProjectReference Include="..\TestProjectMoodeStabil\TestProjectMoodeStabil.csproj" />
   </ItemGroup>
 
 </Project>
