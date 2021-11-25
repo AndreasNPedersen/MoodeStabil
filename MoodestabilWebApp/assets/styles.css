@@ -1,0 +1,42 @@
+body {
+    background-color: #eeeeee;
+    font-family: Arial, Helvetica, sans-serif;
+}
+h1, h2, h3 {
+    font-family: 'Ubuntu', sans-serif;
+}
+h3 {
+    font-size: smaller;
+}
+h4 {
+    font-size: larger;
+}
+.jumbotron {
+    background-color: white;
+}
+.btn-primary {
+    background-color: #FFB900;
+    border-color: #FFB900;
+}
+.btn-primary:hover {
+    background-color: #FF7000;
+    border-color: #FF7000;
+}
+.btn-primary:focus {
+    background-color: #FFB900;
+    border-color: #FFB900;
+}
+.btn-link {
+    color: #FFB900;
+}
+.headerDivider {
+    border-left:1px solid #eeeeee; 
+    border-right:1px solid #0F5F68; 
+    height:50%;
+    position:absolute;
+    right:249px;
+    top:10px; 
+}
+.fa-calendar {
+    color: #e0e0e0
+}

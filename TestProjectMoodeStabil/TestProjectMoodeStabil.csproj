@@ -16,6 +16,7 @@
   <ItemGroup>
     <ProjectReference Include="..\ModelLib\ModelLib.csproj" />
     <ProjectReference Include="..\MoodeStabil\MoodeStabil.csproj" />
+    <ProjectReference Include="..\UDPReciverPI\UDPReciverPI.csproj" />
   </ItemGroup>
 
 </Project>
