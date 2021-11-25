@@ -8,8 +8,17 @@ namespace MoodeStabil.Manager
 {
     public class ManageSubjects : IManageSubjects
     {
+        public void AddSubject(Subjects aSubjects)
+        {
+            throw new NotImplementedException();
+        }
 
         public IEnumerable<Subjects> GetAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Subjects GetById(int id)
         {
             throw new NotImplementedException();
         }

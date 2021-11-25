@@ -10,5 +10,7 @@ namespace MoodeStabil.Manager
     {
         IEnumerable<Subjects> GetAll();
         void Update(int id,DateTime dateTime);
+        Subjects GetById(int id);
+        void AddSubject(Subjects aSubjects);
     }
 }
