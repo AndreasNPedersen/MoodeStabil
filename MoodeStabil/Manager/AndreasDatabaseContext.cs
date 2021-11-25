@@ -39,23 +39,20 @@ namespace MoodeStabil.Manager
             modelBuilder.Entity<PiData>(entity =>
             {
                 entity.Property(e => e.Date).HasColumnType("datetime");
+
                 entity.Property(e => e.DateFromSubject).HasColumnType("datetime");
 
-                entity.Property(e => e.SubjectId).HasColumnName("SubjectID");
+                entity.HasOne(d => d.Subject);
 
-                entity.HasOne(d => d.Subject)
-                    .WithMany(p => p.PiData)
-                    .HasForeignKey(d => d.SubjectId)
-                    .HasConstraintName("FK_PiData_ToSubjects");
             });
 
             modelBuilder.Entity<Subjects>(entity =>
             {
+                entity.Property(e => e.SubjectMeetTime).HasColumnType("datetime");
+
                 entity.Property(e => e.SubjectName)
                     .HasMaxLength(50)
                     .IsUnicode(false);
-
-                entity.Property(e => e.SubjectMeetTime).HasColumnType("datetime");
             });
 
             OnModelCreatingPartial(modelBuilder);

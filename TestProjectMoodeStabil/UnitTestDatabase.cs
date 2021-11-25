@@ -13,7 +13,7 @@ namespace TestProjectMoodeStabil
         IPiDataManager mgr;
         [TestInitialize]
         public void StartUp() {
-            mgr = new PiDataManager(new AndreasDatabaseContext());
+           
         }
 
         [TestMethod]

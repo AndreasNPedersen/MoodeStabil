@@ -1,4 +1,5 @@
-﻿using ModelLib;
+﻿using Microsoft.EntityFrameworkCore;
+using ModelLib;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ namespace MoodeStabil.Manager
 {
     public class PiDataManager : IPiDataManager
     {
-        AndreasDatabaseContext _database;
+       private readonly AndreasDatabaseContext _database;
         public PiDataManager (AndreasDatabaseContext _newDatabase)
         {
             _database = _newDatabase;
@@ -22,7 +23,9 @@ namespace MoodeStabil.Manager
                 {
                     try
                     {
-                    _database.Add(new PiData(date,sub.SubjectMeetTime,sub));
+                        PiData data = new PiData() {Date=date,DateFromSubject=sub.SubjectMeetTime,SubjectId=sub.Id,Subject=sub };
+                        _database.Add(data);
+                        _database.SaveChanges();
                         return true;
                     }catch(Exception ex)
                     {
@@ -34,7 +37,9 @@ namespace MoodeStabil.Manager
                 {
                     try
                     {
-                        _database.Add(new PiData(date, sub.SubjectMeetTime, sub));
+                        PiData data = new PiData() { Date = date, DateFromSubject = sub.SubjectMeetTime, SubjectId = sub.Id, Subject = sub };
+                        _database.Add(data);
+                        _database.SaveChanges();
                         return true;
                     }
                     catch (Exception ex)
@@ -47,7 +52,9 @@ namespace MoodeStabil.Manager
                 {
                     try
                     {
-                        _database.Add(new PiData(date, sub.SubjectMeetTime, sub));
+                        PiData data = new PiData() { Date = date, DateFromSubject = sub.SubjectMeetTime, SubjectId = sub.Id, Subject = sub };
+                        _database.Add(data);
+                        _database.SaveChanges();
                         return true;
                     }
                     catch (Exception ex)
@@ -60,7 +67,9 @@ namespace MoodeStabil.Manager
                 {
                     try
                     {
-                        _database.Add(new PiData(date, sub.SubjectMeetTime, sub));
+                        PiData data = new PiData() { Date = date, DateFromSubject = sub.SubjectMeetTime, SubjectId = sub.Id, Subject = sub };
+                        _database.Add(data);
+                        _database.SaveChanges();
                         return true;
                     }
                     catch (Exception ex)
@@ -73,7 +82,9 @@ namespace MoodeStabil.Manager
                 {
                     try
                     {
-                        _database.Add(new PiData(date, sub.SubjectMeetTime, sub));
+                        PiData data = new PiData() { Date = date, DateFromSubject = sub.SubjectMeetTime, SubjectId = sub.Id, Subject = sub };
+                        _database.Add(data);
+                        _database.SaveChanges();
                         return true;
                     }
                     catch (Exception ex)
@@ -88,7 +99,16 @@ namespace MoodeStabil.Manager
 
         public IEnumerable<PiData> GetAllPiData()
         {
-            return _database.PiData.ToList();
+            List<Subjects> subjects = _database.Subjects.ToList();
+            List<PiData> piDatas = _database.PiData.ToList();
+            
+            //var ListpiDatas = from b in piDatas
+            //                  from c in subjects
+            //                  where b.SubjectId == c.Id
+            //                  select b.Subject = c;
+            
+            
+            return piDatas;
         }
     }
 }

@@ -9,31 +9,10 @@ namespace ModelLib
     public partial class PiData
     {
         public int Id { get; set; }
-        public DateTime? Date { get; set; }
         public DateTime? DateFromSubject { get; set; }
+        public DateTime? Date { get; set; }
         public int? SubjectId { get; set; }
 
-        public PiData() { }
-
-        public PiData(DateTime? date, DateTime? dateFromSubject, Subjects subject)
-        {
-            Date = date;
-            DateFromSubject = dateFromSubject;
-            Subject = subject;
-        }
-
-
-
         public virtual Subjects Subject { get; set; }
-
-        public override bool Equals(object obj)
-        {
-            return obj is PiData data &&
-                   Id == data.Id &&
-                   Date == data.Date &&
-                   DateFromSubject == data.DateFromSubject &&
-                   SubjectId == data.SubjectId &&
-                   EqualityComparer<Subjects>.Default.Equals(Subject, data.Subject);
-        }
     }
 }

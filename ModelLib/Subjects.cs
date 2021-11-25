@@ -10,29 +10,13 @@ namespace ModelLib
     {
         public Subjects()
         {
-            PiData = new HashSet<PiData>();
-        }
-
-        public Subjects(int id, string subjectName, DateTime? subjectMeetTime)
-        {
-            Id = id;
-            SubjectName = subjectName;
-            SubjectMeetTime = subjectMeetTime;
+            
         }
 
         public int Id { get; set; }
         public string SubjectName { get; set; }
         public DateTime? SubjectMeetTime { get; set; }
 
-        public virtual ICollection<PiData> PiData { get; set; }
-
-        public override bool Equals(object obj)
-        {
-            return obj is Subjects subjects &&
-                   Id == subjects.Id &&
-                   SubjectName == subjects.SubjectName &&
-                   SubjectMeetTime == subjects.SubjectMeetTime &&
-                   EqualityComparer<ICollection<PiData>>.Default.Equals(PiData, subjects.PiData);
-        }
+        
     }
 }
