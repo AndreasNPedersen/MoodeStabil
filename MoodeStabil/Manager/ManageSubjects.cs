@@ -7,16 +7,18 @@ using System.Threading.Tasks;
 namespace MoodeStabil.Manager
 {
     public class ManageSubjects : IManageSubjects
-    {
+    { 
         private static List<Subjects> MockSubjects = new()
         {
    
-            new Subjects(1,"Programming",DateTime.Now),
-            new Subjects(2,"Systemudvikling", new DateTime(2021,2,3,9,10,10)),
-            new Subjects(3,"Technology", new DateTime(2021,2,4,9,10,10)),
+            new Subjects("Programming",DateTime.Now),
+            new Subjects("Systemudvikling", new DateTime(2021,2,3,9,10,10)),
+            new Subjects("Technology", new DateTime(2021,2,4,9,10,10)),
 
 
         };
+
+       
     
         public void AddSubject(Subjects aSubjects)
         {

@@ -22,7 +22,7 @@ namespace TestProjectMoodeStabil
         //    List<Subjects> subjects = mgr.GetSubjects();
 
         //    // made the data, data from Pi
-        //    PiData data = new PiData(dateData,dateData,sub);
+        //    PiData data = new PiData(dateData, dateData, sub);
         //    int countOriData = mgr.GetAllPiData().length;
         //    mgr.AddPiData(dateData);
         //    int countdata = mgr.GetAllPiData().length;
