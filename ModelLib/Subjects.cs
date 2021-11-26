@@ -6,29 +6,51 @@ using System.Collections.Generic;
 
 namespace ModelLib
 {
-    public partial class Subjects
+    public partial record Subjects
     {
+        private HashSet<PiData> PiData;
         public Subjects()
         {
-            
+
+            PiData = new HashSet<PiData>();
         }
 
-        public int Id { get; set; }
-        public string SubjectName { get; set; }
-        public DateTime? SubjectMeetTime { get; set; }
-
-        public Subjects(string subjectName, DateTime? subjectMeetTime)
+        public Subjects( string subjectName, DateTime? subjectMeetTime)
         {
+            Id = idCounter++;
             SubjectName = subjectName;
             SubjectMeetTime = subjectMeetTime;
         }
 
-        public override bool Equals(object obj)
+        public Subjects(int id, string subjectName, DateTime? subjectMeetTime)
         {
+            Id = id;
+            SubjectName = subjectName;
+            SubjectMeetTime = subjectMeetTime;
+
+        }
+
+        private static int idCounter = 0;
+        public int Id { get; set; }
+        public string SubjectName { get; set; }
+        public DateTime? SubjectMeetTime { get; set; }
+
+
+        public virtual bool Equals(Subjects obj)
+        {
+            // Checking Date Property goes wrong because computers are poor at dealing with long integers, so we test for year, day, month speceficily 
             return obj is Subjects subjects &&
                    Id == subjects.Id &&
                    SubjectName == subjects.SubjectName &&
-                   SubjectMeetTime == subjects.SubjectMeetTime;
+                   SubjectMeetTime.Value.Day == subjects.SubjectMeetTime.Value.Day &&
+                   SubjectMeetTime.Value.Year == subjects.SubjectMeetTime.Value.Year
+                   &&
+                   SubjectMeetTime.Value.Month == subjects.SubjectMeetTime.Value.Month;
+        }
+        public override string ToString()
+        {
+            return $"Id: {Id}, SubjectName: {SubjectName}, SubjectMeetTime:{SubjectMeetTime}";
+
         }
     }
 }

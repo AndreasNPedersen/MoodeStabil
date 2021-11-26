@@ -10,9 +10,10 @@ using System.Threading.Tasks;
 
 namespace TestProjectMoodeStabil
 {
+    [TestClass]
     public class UnitTestChagningTime
     {
-        private IManageSubjects mgr;
+        private IManageSubjects mgr = new ManageSubjects();
         private  List<Subjects> subjects;
         [TestInitialize]
         public void StartUp()
@@ -25,21 +26,23 @@ namespace TestProjectMoodeStabil
             
            
         };
-        mgr = new ManageSubjects();
+            mgr.ReplaceList();
+      
+
+           
         }
         [TestMethod]
         public void TestGetById()
         {
-            Subjects subjectsById = mgr.GetById(2);
-
-            Assert.AreEqual(subjects[1], subjectsById);
+            Subjects subjectsById = mgr.GetById(1);
+            Console.WriteLine(subjectsById.ToString(), subjects[0].ToString());
+            Assert.AreEqual(subjects[0], subjectsById);
         }
        
         [TestMethod]
         public void TestGetAll()
         {
             List<Subjects> AllSubjects = mgr.GetAll().ToList();
-
             CollectionAssert.AreEqual(subjects, AllSubjects);
           
 
@@ -48,20 +51,32 @@ namespace TestProjectMoodeStabil
         [TestMethod]
         public void TestChagningTimeOfSubject()
         {
-            DateTime date = new(2, 2, 2, 2, 2, 2, 2);
-            mgr.Update(2, date);
+            Subjects aSubject = new(2, "Systemudvikling", DateTime.Now);
+            mgr.Update(aSubject);
             Subjects changedSubject = mgr.GetById(2);
            
             
-            Assert.AreEqual(date, changedSubject.SubjectMeetTime.Value);
+            Assert.AreEqual(aSubject, changedSubject);
 
         }
         [TestMethod]
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void TestChangingTimeOfSubject()
         {
-            mgr.Update(99999999, new DateTime(2,2,2,2,2,2));
+            Subjects aSubject = new(40000, "Systemudvikling", DateTime.Now);
+            mgr.Update(aSubject);
         }
+
+        [TestMethod]
+        public void TestAddSubject()
+        {
+            Subjects aSubject = new(10, "LinjeFag", DateTime.Now);
+            mgr.AddSubject(aSubject);
+            Assert.AreEqual(subjects.Count + 1, mgr.GetAll().ToList().Count);
+            Subjects subjectFromMgr = mgr.GetById(10);
+            Assert.AreEqual(aSubject, subjectFromMgr);
+        }
+      
 
     }
 }

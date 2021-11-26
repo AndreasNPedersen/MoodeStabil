@@ -9,8 +9,9 @@ namespace MoodeStabil.Manager
     public interface IManageSubjects
     {
         IEnumerable<Subjects> GetAll();
-        void Update(int id,DateTime dateTime);
+        void Update(Subjects aSubject);
         Subjects GetById(int id);
         void AddSubject(Subjects aSubjects);
+        void ReplaceList();
     }
 }

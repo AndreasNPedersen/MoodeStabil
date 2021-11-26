@@ -50,7 +50,7 @@ namespace TestProjectMoodeStabil
             byte[] udBuffer = Encoding.UTF8.GetBytes(tempDateTime);
             client.Send(udBuffer, udBuffer.Length, new IPEndPoint(IPAddress.Broadcast, 7773));
 
-            Assert.AreEqual(tempDateTime, );
+            Assert.AreEqual(tempDateTime, 1);
         }
 
         [TestMethod]

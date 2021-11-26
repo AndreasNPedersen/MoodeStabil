@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31729.503
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoodeStabil", "MoodeStabil.csproj", "{B90F7816-4A60-4382-BF89-FB35E3BABD80}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoodeStabil", "MoodeStabil.csproj", "{B90F7816-4A60-4382-BF89-FB35E3BABD80}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UDPReciverPI", "..\UDPReciverPI\UDPReciverPI.csproj", "{0977BAC1-28CF-4D8E-8FA0-7344065723BB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UDPReciverPI", "..\UDPReciverPI\UDPReciverPI.csproj", "{0977BAC1-28CF-4D8E-8FA0-7344065723BB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelLib", "..\ModelLib\ModelLib.csproj", "{5128A073-DCF2-4B14-972F-9A192C9E5551}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ModelLib", "..\ModelLib\ModelLib.csproj", "{5128A073-DCF2-4B14-972F-9A192C9E5551}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProjectMoodeStabil", "..\TestProjectMoodeStabil\TestProjectMoodeStabil.csproj", "{27C014E7-F218-4550-9E0F-A7DF07ACC396}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestProjectMoodeStabil", "..\TestProjectMoodeStabil\TestProjectMoodeStabil.csproj", "{27C014E7-F218-4550-9E0F-A7DF07ACC396}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
