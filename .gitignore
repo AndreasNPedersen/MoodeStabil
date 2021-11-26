@@ -348,3 +348,8 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+
+# Date Range Picker
+bower_components
+node_modules
+npm-debug.log

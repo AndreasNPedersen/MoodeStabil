@@ -203,5 +203,17 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- Our Chart Code -->
     <script src="assets/chartJS/ourCharts.js"></script>
+
+    <!-- Use Date Range Picker and components it relies on (http://boolie.github.io/) -->
+    <script type="text/javascript" src="assets/dateRangePicker/jquery.js"></script>
+    <script type="text/javascript" src="assets/dateRangePicker/moment.js"></script>
+    <script type="text/javascript" src="assets/dateRangePicker/daterangepicker.js"></script>
+    <link rel="stylesheet" type="text/css" href="assets/dateRangePicker/daterangepicker-bs3.css" />
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+        $('input[name="daterange"]').daterangepicker();
+        });
+    </script>
 </body>
 </html>
