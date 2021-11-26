@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31729.503
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoodeStabilProjekt", "MoodeStabilProjekt.csproj", "{B90F7816-4A60-4382-BF89-FB35E3BABD80}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoodeStabil", "MoodeStabil.csproj", "{B90F7816-4A60-4382-BF89-FB35E3BABD80}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UDPReciverPI", "..\UDPReciverPI\UDPReciverPI.csproj", "{0977BAC1-28CF-4D8E-8FA0-7344065723BB}"
 EndProject
