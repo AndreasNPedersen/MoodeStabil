@@ -17,6 +17,18 @@ namespace ModelLib
         public string SubjectName { get; set; }
         public DateTime? SubjectMeetTime { get; set; }
 
-        
+        public Subjects(string subjectName, DateTime? subjectMeetTime)
+        {
+            SubjectName = subjectName;
+            SubjectMeetTime = subjectMeetTime;
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj is Subjects subjects &&
+                   Id == subjects.Id &&
+                   SubjectName == subjects.SubjectName &&
+                   SubjectMeetTime == subjects.SubjectMeetTime;
+        }
     }
 }

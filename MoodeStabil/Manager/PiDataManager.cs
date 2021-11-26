@@ -97,7 +97,7 @@ namespace MoodeStabil.Manager
             return false;
         }
 
-        public IEnumerable<PiData> GetAllPiData()
+        public List<PiData> GetAllPiData()
         {
             List<Subjects> subjects = _database.Subjects.ToList();
             List<PiData> piDatas = _database.PiData.ToList();

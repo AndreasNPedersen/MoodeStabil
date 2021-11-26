@@ -8,7 +8,7 @@ namespace MoodeStabil.Manager
 {
     public interface IPiDataManager
     {
-        IEnumerable<PiData> GetAllPiData();
+        List<PiData> GetAllPiData();
         bool AddPiData(DateTime date);
     }
 }
