@@ -28,11 +28,18 @@ namespace ModelLib
 
         public override bool Equals(object obj)
         {
+            // Checking Date Property goes wrong because computers are poor at dealing with long integers, so we test for year, day, month speceficily 
             return obj is Subjects subjects &&
                    Id == subjects.Id &&
                    SubjectName == subjects.SubjectName &&
-                   SubjectMeetTime == subjects.SubjectMeetTime &&
-                   EqualityComparer<ICollection<PiData>>.Default.Equals(PiData, subjects.PiData);
+                   SubjectMeetTime.Value.Day == subjects.SubjectMeetTime.Value.Day &&
+                   SubjectMeetTime.Value.Year == subjects.SubjectMeetTime.Value.Year
+                   &&
+                   SubjectMeetTime.Value.Month == subjects.SubjectMeetTime.Value.Month;
+        }
+        public override string ToString()
+        {
+            return $"Id: {Id}, SubjectName: {SubjectName}, SubjectMeetTime:{SubjectMeetTime}";
         }
     }
 }

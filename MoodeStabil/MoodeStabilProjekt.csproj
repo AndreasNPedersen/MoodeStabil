@@ -16,7 +16,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ModelLib\ModelLib.csproj" />
-    <ProjectReference Include="..\TestProjectMoodeStabil\TestProjectMoodeStabil.csproj" />
   </ItemGroup>
 
 </Project>
