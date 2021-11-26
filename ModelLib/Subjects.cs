@@ -8,11 +8,10 @@ namespace ModelLib
 {
     public partial record Subjects
     {
+        private HashSet<PiData> PiData;
         public Subjects()
         {
-<<<<<<< HEAD
-            
-=======
+
             PiData = new HashSet<PiData>();
         }
 
@@ -28,7 +27,7 @@ namespace ModelLib
             Id = id;
             SubjectName = subjectName;
             SubjectMeetTime = subjectMeetTime;
->>>>>>> three
+
         }
 
         private static int idCounter = 0;
@@ -36,11 +35,6 @@ namespace ModelLib
         public string SubjectName { get; set; }
         public DateTime? SubjectMeetTime { get; set; }
 
-        public Subjects(string subjectName, DateTime? subjectMeetTime)
-        {
-            SubjectName = subjectName;
-            SubjectMeetTime = subjectMeetTime;
-        }
 
         public virtual bool Equals(Subjects obj)
         {
@@ -48,9 +42,6 @@ namespace ModelLib
             return obj is Subjects subjects &&
                    Id == subjects.Id &&
                    SubjectName == subjects.SubjectName &&
-<<<<<<< HEAD
-                   SubjectMeetTime == subjects.SubjectMeetTime;
-=======
                    SubjectMeetTime.Value.Day == subjects.SubjectMeetTime.Value.Day &&
                    SubjectMeetTime.Value.Year == subjects.SubjectMeetTime.Value.Year
                    &&
@@ -59,7 +50,7 @@ namespace ModelLib
         public override string ToString()
         {
             return $"Id: {Id}, SubjectName: {SubjectName}, SubjectMeetTime:{SubjectMeetTime}";
->>>>>>> three
+
         }
     }
 }

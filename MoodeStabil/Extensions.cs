@@ -16,7 +16,7 @@ namespace MoodeStabilProjekt
                 Id = aSubject.Id,
                 SubjectName = aSubject.SubjectName,
                 SubjectMeetTime = aSubject.SubjectMeetTime,
-                PiData = aSubject.PiData
+                
 
             };
         }
