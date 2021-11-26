@@ -6,13 +6,32 @@ using System.Collections.Generic;
 
 namespace ModelLib
 {
-    public partial class Subjects
+    public partial record Subjects
     {
         public Subjects()
         {
+<<<<<<< HEAD
             
+=======
+            PiData = new HashSet<PiData>();
         }
 
+        public Subjects( string subjectName, DateTime? subjectMeetTime)
+        {
+            Id = idCounter++;
+            SubjectName = subjectName;
+            SubjectMeetTime = subjectMeetTime;
+        }
+
+        public Subjects(int id, string subjectName, DateTime? subjectMeetTime)
+        {
+            Id = id;
+            SubjectName = subjectName;
+            SubjectMeetTime = subjectMeetTime;
+>>>>>>> three
+        }
+
+        private static int idCounter = 0;
         public int Id { get; set; }
         public string SubjectName { get; set; }
         public DateTime? SubjectMeetTime { get; set; }
@@ -23,12 +42,24 @@ namespace ModelLib
             SubjectMeetTime = subjectMeetTime;
         }
 
-        public override bool Equals(object obj)
+        public virtual bool Equals(Subjects obj)
         {
+            // Checking Date Property goes wrong because computers are poor at dealing with long integers, so we test for year, day, month speceficily 
             return obj is Subjects subjects &&
                    Id == subjects.Id &&
                    SubjectName == subjects.SubjectName &&
+<<<<<<< HEAD
                    SubjectMeetTime == subjects.SubjectMeetTime;
+=======
+                   SubjectMeetTime.Value.Day == subjects.SubjectMeetTime.Value.Day &&
+                   SubjectMeetTime.Value.Year == subjects.SubjectMeetTime.Value.Year
+                   &&
+                   SubjectMeetTime.Value.Month == subjects.SubjectMeetTime.Value.Month;
+        }
+        public override string ToString()
+        {
+            return $"Id: {Id}, SubjectName: {SubjectName}, SubjectMeetTime:{SubjectMeetTime}";
+>>>>>>> three
         }
     }
 }
