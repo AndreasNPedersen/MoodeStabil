@@ -1,8 +1,11 @@
-const baseUrl = 'http://moodestabil.azurewebsites.net/api';
+/// <reference path="assets/chartJS/ourCharts.js"/>
+const baseUrl = 'https://moodestabil.azurewebsites.net/api';
 
 Vue.createApp({
     data() {
         return {
+            dateRangeStart: new Date(2021, 11, 29, 9, 10, 00, 0),
+            dateRangeEnd: new Date(2021, 12, 3, 10, 10, 00, 0),
             piDataList: [],
             piDataInfo: {
                 id: 0,
@@ -35,6 +38,9 @@ Vue.createApp({
             }
         }
     },
+    created() {
+        this.getLastFiveDays();
+    },
     methods: {
         // Subject Methods
         async getAllSubjects() {
@@ -66,7 +72,11 @@ Vue.createApp({
         },
         // Pi Data
         async getAllPiData() {
-            this.get(baseUrl + "Pidata");
+            this.get(baseUrl + "/PiData");
+        },
+        async getAllPiDataFiveDays() {
+            const url = baseUrl + "/PiDataController/days/5"
+            this.get(url);
         },
         async getPiDataById(id) {
             const url = baseUrl + "/PiDataController/" + id
@@ -107,10 +117,25 @@ Vue.createApp({
             try {
                 const response = await axios.get(url)
                 this.piDataList = await response.data
-                console.log(this.Records)
+                updateCharts(this.piDataList);
             } catch (e) {
                 alert(e.message)
             }
+        },
+        async getLastFiveDays() {
+            try {
+                const response = await axios.get(baseUrl + "/PiData/GetLastFiveDays")
+                this.piDataList = await response.data
+                updateCharts(this.piDataList);
+            } catch (e) {
+                alert(e.message)
+            }
+        },
+        // Filter Methods
+        async getDateRange() {
+            var currentDate = Date.get();
+            this.dateRangeEnd = currentDate;
+            this.dateRangeStart = new Date(currentDate.getYear(), currentDate.getMonth(), currentDate.getDate() - 5, 0, 0, 00, 0);
         }
     }
 }).mount("#app")
