@@ -37,7 +37,7 @@
 
 </head>
 <body>
-    <div class="container" div id="app">
+    <div class="container" id="app">
         <!-- Nav bar -->
         <div class="d-flex flex-column">
             <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
@@ -184,6 +184,21 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <!-- Spacer Small -->
+        <div class="row">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th v-for="{name, value} in piDataList[0]">{{value}}</th>
+                    </tr>
+                </thead>
+                <body>
+                    <tr v-for="row in piDataList">
+                        <td v-for="piData in row">{{piData}}</td>
+                    </tr>
+                </body>
+            </table>
         </div>
     </div>
 

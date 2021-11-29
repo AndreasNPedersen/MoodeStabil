@@ -1,8 +1,9 @@
-const baseUrl = 'http://localhost:60475/api';
+const baseUrl = 'http://moodestabil.azurewebsites.net/api';
 
 Vue.createApp({
     data() {
         return {
+            piDataList: [],
             piDataInfo: {
                 id: 0,
                 dateFromSubject: null,
@@ -47,7 +48,7 @@ Vue.createApp({
             try {
                 response = await axios.post(baseUrl, this.subjectInfo)
                 this.addMessage = "response " + response.status + " " + response.statusText
-                this.getAllRecords()
+                this.get()
                 console.log(response.statusText);
             } catch (e) {
                 alert(e.message)
@@ -58,14 +59,14 @@ Vue.createApp({
             try {
                 response = await axios.put(url, this.subjectInfo)
                 this.updateMessage = "response " + response.status + " " + response.statusText
-                this.getAllRecords()
+                this.get()
             } catch (e) {
                 alert(e.message)
             }
         },
         // Pi Data
         async getAllPiData() {
-            this.get(baseUrl);
+            this.get(baseUrl + "Pidata");
         },
         async getPiDataById(id) {
             const url = baseUrl + "/PiDataController/" + id
@@ -75,7 +76,7 @@ Vue.createApp({
             try {
                 response = await axios.post(baseUrl, this.piDataInfo)
                 this.addMessage = "response " + response.status + " " + response.statusText
-                this.getAllRecords()
+                this.get()
                 console.log(response.statusText);
             } catch (e) {
                 alert(e.message)
@@ -86,7 +87,7 @@ Vue.createApp({
             try {
                 response = await axios.put(url, this.piDataInfo)
                 this.updateMessage = "response " + response.status + " " + response.statusText
-                this.getAllRecords()
+                this.get()
             } catch (e) {
                 alert(e.message)
             }
@@ -96,19 +97,20 @@ Vue.createApp({
             try {
                 response = await axios.delete(deleteUrl)
                 this.deleteMessage = response.status + " " + response.statusText
-                this.getAllRecords()
+                this.get()
             } catch (e) {
                 alert(e.message)
             }
         },
+        // Actual Get Method
         async get(url) {
             try {
                 const response = await axios.get(url)
-                this.Records = await response.data
+                this.piDataList = await response.data
                 console.log(this.Records)
             } catch (e) {
                 alert(e.message)
             }
         }
     }
-})
+}).mount("#app")
