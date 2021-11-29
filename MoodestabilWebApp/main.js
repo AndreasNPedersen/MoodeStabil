@@ -15,6 +15,7 @@ Vue.createApp({
                     subjectMeetTime: null
                 }
             },
+            subjects:[],
             subjectInfo: {
                 id: 0,
                 subjectName: "string",
@@ -41,7 +42,7 @@ Vue.createApp({
             this.get(baseUrl);
         },
         async getSubjectById(id) {
-            const url = baseUrl + "/SubjectsController/" + id
+            const url = baseUrl + "/Subjects/" + id
             this.get(url);
         },
         async addSubject() {

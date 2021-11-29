@@ -7,34 +7,32 @@ using System.Threading.Tasks;
 namespace MoodeStabil.Manager
 {
     public class ManageSubjects : IManageSubjects
-    { 
-        private static List<Subjects> MockSubjects = new()
+    {
+        private readonly AndreasDatabaseContext _database;
+        public ManageSubjects(AndreasDatabaseContext _newDatabase)
         {
-   
-            new Subjects("Programming",DateTime.Now),
-            new Subjects("Systemudvikling", new DateTime(2021,2,3,9,10,10)),
-            new Subjects("Technology", new DateTime(2021,2,4,9,10,10)),
+            _database = _newDatabase;
+        }
 
 
-        };
 
-       
-    
         public void AddSubject(Subjects aSubjects)
         {
-            MockSubjects.Add(aSubjects);
+            aSubjects.Id = 0;
+            _database.Subjects.Add(aSubjects);
+            _database.SaveChanges();
         }
 
         public IEnumerable<Subjects> GetAll()
         {
-            return MockSubjects;
+            return _database.Subjects.ToList();
         }
 
         public Subjects GetById(int id)
         {
-             if(MockSubjects.Exists(i=>i.Id == id))
+             if(_database.Subjects.ToList().Exists(i=>i.Id == id))
             {
-                Subjects subjects = MockSubjects.Find(i => i.Id == id);
+                Subjects subjects = _database.Subjects.Find(id);
                 return subjects;
             }
             throw new KeyNotFoundException();
@@ -42,22 +40,22 @@ namespace MoodeStabil.Manager
 
         public void Update(Subjects aSubject)
         {
-            var index = MockSubjects.FindIndex(existingItem => existingItem.Id == aSubject.Id);
-            MockSubjects[index] = aSubject;
+            Subjects i = GetById(aSubject.Id);
+            _database.Entry(i).State = Microsoft.EntityFrameworkCore.EntityState.Detached;
+            _database.Subjects.Update(aSubject);
+            _database.SaveChanges();
         }
+        public void DeleteItem(int id)
+        {
+            var item = _database.Subjects.ToList().Find(existingItem => existingItem.Id == id);
+            _database.Subjects.Remove(item);
+            _database.SaveChanges();
 
+        }
         // Mainly for testing
         public void ReplaceList()
         {
-            MockSubjects = new()
-            {
-
-                new Subjects(1, "Programming", DateTime.Now),
-                new Subjects(2, "Systemudvikling", new DateTime(2021, 2, 3, 9, 10, 10)),
-                new Subjects(3, "Technology", new DateTime(2021, 2, 4, 9, 10, 10)),
-
-
-            };
+          
         }
     }
 }
