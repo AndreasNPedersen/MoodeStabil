@@ -106,14 +106,21 @@ namespace MoodeStabil.Manager
         {
             List<Subjects> subjects = _database.Subjects.ToList();
             List<PiData> piDatas = _database.PiData.ToList();
-            
-            //var ListpiDatas = from b in piDatas
-            //                  from c in subjects
-            //                  where b.SubjectId == c.Id
-            //                  select b.Subject = c;
-            
+
             
             return piDatas;
+        }
+
+        public List<PiData> SearchPiDatas()
+        {
+            DateTime time = DateTime.Now;
+            List<PiData> piDatas = GetAllPiData();
+
+            IEnumerable<PiData> result = piDatas.Where(c => c.Date.Value.Day == time.Day || c.Date.Value.Day == time.Day - 1 ||
+          c.Date.Value.Day == time.Day - 2 || c.Date.Value.Day == time.Day - 3 || c.Date.Value.Day == time.Day - 4 ||
+          c.Date.Value.Day == time.Day - 5
+                );
+            return result.ToList();
         }
     }
 }
