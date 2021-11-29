@@ -3,14 +3,13 @@ using ModelLib;
 using MoodeStabil.Manager;
 using System;
 using System.Collections.Generic;
-
+using System.Linq;
 
 namespace TestProjectMoodeStabil
 {
     [TestClass]
     public class UnitTestDatabase
     {
-        DateTime dateData = DateTime.Now;
         IPiDataManager mgr;
         
         public UnitTestDatabase() {
@@ -20,6 +19,7 @@ namespace TestProjectMoodeStabil
         [TestMethod]
         public void TestMethodAdd()
         {
+            DateTime dateData = DateTime.Parse("29-11-2021 10:18:46");
 
            
             
@@ -61,8 +61,24 @@ namespace TestProjectMoodeStabil
             data.Id = 10;
             Assert.AreEqual(data, mgr.GetAllPiData().Find(c => c.Id==data.Id));
         }
-       
+
+        [TestMethod]
+        public void TestMethodSearch()
+        {
+            DateTime time = DateTime.Parse("29-11-2021 09:18:46"); ;
+            
+
+            List<PiData> piDatas = mgr.GetAllPiData();
+            
+            IEnumerable< PiData> result = piDatas.Where( c => c.Date.Value.Day == time.Day || c.Date.Value.Day == time.Day-1 ||
+            c.Date.Value.Day == time.Day-2 || c.Date.Value.Day == time.Day - 3 || c.Date.Value.Day == time.Day - 4 ||
+            c.Date.Value.Day == time.Day - 5
+                );
+            Assert.AreEqual(17, result.Count());
+        }
+
+
 
     }
-    
+
 }
