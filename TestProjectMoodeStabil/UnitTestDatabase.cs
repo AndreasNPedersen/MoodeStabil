@@ -10,62 +10,58 @@ namespace TestProjectMoodeStabil
     [TestClass]
     public class UnitTestDatabase
     {
+        DateTime dateData = DateTime.Now;
         IPiDataManager mgr;
         
-        public UnitTestDatabase(AndreasDatabaseContext _data) {
-            mgr =new PiDataManager(_data);
+        public UnitTestDatabase() {
+            mgr = new PiDataManager(new AndreasDatabaseContext());
         }
 
         [TestMethod]
         public void TestMethodAdd()
         {
 
-            DateTime dateData = DateTime.Now;
+           
             
             Subjects sub = new Subjects("Programmering", dateData);
             sub.Id = 1;
-            //List<Subjects> subjects = mgr.GetSubjects();
+            
 
             // made the data, data from Pi
             PiData data = new PiData(dateData,dateData,sub);
             int countOriData = mgr.GetAllPiData().Count;
             
             mgr.AddPiData(dateData);
+
             int countdata = mgr.GetAllPiData().Count;
-            Assert.AreEqual(data, mgr.GetAllPiData().Find(c =>c.Id ==data.Id));
+            Assert.AreEqual(data.Date, mgr.GetAllPiData().Find(c =>c.Date == data.Date).Date);
             Assert.AreEqual(countOriData + 1, countdata);
 
         }
         //test date på subject en weekend
         [TestMethod]
-        [ExpectedException(typeof(Exception))]
         public void TestMethodAddException()
         {
-            DateTime dateData = DateTime.Parse("6/19/2015 10:35:50");
-            mgr.AddPiData(dateData);
+            DateTime date = new DateTime(2021,2,28);
+            
+            Assert.IsFalse(mgr.AddPiData(date));
         }
 
         [TestMethod]
         public void TestMethodGetAllPiData()
         {
-            DateTime dateData = DateTime.Now;
-            Subjects sub = new Subjects("Programmering", dateData);
-            sub.Id = 1;
-            //List<Subjects> subjects = mgr.GetSubjects();
+            
+            DateTime time = DateTime.Parse("29-11-2021 09:18:46");
+            DateTime timeTwo = DateTime.Parse("22-11-2021 19:48:17"); 
+            Subjects sub = new Subjects("Fag 2", timeTwo);
+            sub.Id = 5;
 
             // made the data, data from Pi
-            PiData data = new PiData(dateData, dateData, sub);
-            Assert.AreEqual(data, mgr.GetAllPiData().Find(c => c.Date==dateData));
+            PiData data = new PiData(timeTwo, time, sub);
+            data.Id = 10;
+            Assert.AreEqual(data, mgr.GetAllPiData().Find(c => c.Id==data.Id));
         }
-        [TestMethod]
-        public void TestMethodGetAllSubjectsData()
-        {
-            DateTime dateData = DateTime.Now;
-            Subjects sub = new Subjects("Programmering", dateData);
-            sub.Id = 1;
-            //List<Subjects> subjects = mgr.GetSubjects();
-            //Assert.AreEqual(sub, subjects[0]);
-        }
+       
 
     }
     
