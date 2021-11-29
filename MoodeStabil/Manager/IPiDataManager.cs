@@ -10,5 +10,6 @@ namespace MoodeStabil.Manager
     {
         List<PiData> GetAllPiData();
         bool AddPiData(DateTime date);
+        List<PiData> SearchPiDatas();
     }
 }

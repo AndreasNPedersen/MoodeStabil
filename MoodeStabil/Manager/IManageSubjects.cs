@@ -13,5 +13,6 @@ namespace MoodeStabil.Manager
         Subjects GetById(int id);
         void AddSubject(Subjects aSubjects);
         void ReplaceList();
+        public void DeleteItem(int id);
     }
 }

@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 
@@ -13,29 +14,44 @@ namespace TestProjectMoodeStabil
     [TestClass]
     public class UnitTestChagningTime
     {
-        private IManageSubjects mgr = new ManageSubjects();
+        //private IManageSubjects mgr = new ManageSubjects(new AndreasDatabaseContext());
         private  List<Subjects> subjects;
+        IManageSubjects mgr;
+
+        //public UnitTestChagningTime(AndreasDatabaseContext _data)
+        //{
+        //    mgr = new ManageSubjects(_data);
+        //}
         [TestInitialize]
         public void StartUp()
         {
-            // Data should be changed we real data is implemented
+            // Data should be changed when real data is implemented
             subjects = new List<Subjects>() {
-            new Subjects(1,"Programming",DateTime.Now),
-            new Subjects(2,"Systemudvikling", new DateTime(2021,2,3,9,10,10)),
-            new Subjects(3,"Technology", new DateTime(2021,2,4,9,10,10)),
-            
-           
-        };
-            mgr.ReplaceList();
-      
+            new Subjects(1,"System Udvikling",new DateTime(2021,02,03)),
+            new Subjects(2,"System Udvikling", new DateTime(2021,11,26)),
+            new Subjects(3,"Teknik", new DateTime(2021,11,24)),
+            new Subjects(4,"Fag 1", new DateTime(2021,11,23)),
+             new Subjects(5,"Fag 2", new DateTime(2021,11,22)),
 
-           
+
+
+        };
+            
+            mgr = new ManageSubjects(new AndreasDatabaseContext());
+            mgr.Update(subjects[0]);
+
+
+        }
+        [TestCleanup]
+        public void CleanUp()
+        {
+            
         }
         [TestMethod]
         public void TestGetById()
         {
             Subjects subjectsById = mgr.GetById(1);
-            Console.WriteLine(subjectsById.ToString(), subjects[0].ToString());
+            //Console.WriteLine(subjectsById.ToString(), subjects[1].ToString());
             Assert.AreEqual(subjects[0], subjectsById);
         }
        
@@ -43,24 +59,27 @@ namespace TestProjectMoodeStabil
         public void TestGetAll()
         {
             List<Subjects> AllSubjects = mgr.GetAll().ToList();
-            CollectionAssert.AreEqual(subjects, AllSubjects);
+            List<Subjects> First3Subjects = new();
           
+            //Assert.AreEqual(AllSubjects[1], subjects[1]);
+            CollectionAssert.AreEqual(subjects, AllSubjects);
+
 
         }
 
         [TestMethod]
         public void TestChagningTimeOfSubject()
         {
-            Subjects aSubject = new(2, "Systemudvikling", DateTime.Now);
+            Subjects aSubject = new(1, "Systemudvikling", DateTime.Now);
             mgr.Update(aSubject);
-            Subjects changedSubject = mgr.GetById(2);
-           
-            
+            Subjects changedSubject = mgr.GetById(1);
+
+
             Assert.AreEqual(aSubject, changedSubject);
 
         }
         [TestMethod]
-        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        [ExpectedException(typeof(KeyNotFoundException))]
         public void TestChangingTimeOfSubject()
         {
             Subjects aSubject = new(40000, "Systemudvikling", DateTime.Now);
@@ -70,13 +89,15 @@ namespace TestProjectMoodeStabil
         [TestMethod]
         public void TestAddSubject()
         {
-            Subjects aSubject = new(10, "LinjeFag", DateTime.Now);
+            Subjects aSubject = new( "LinjeFag", DateTime.Now);
             mgr.AddSubject(aSubject);
-            Assert.AreEqual(subjects.Count + 1, mgr.GetAll().ToList().Count);
-            Subjects subjectFromMgr = mgr.GetById(10);
+            // Assert.AreEqual(subjects.Count + 1, mgr.GetAll().ToList().Count);
+            Thread.Sleep(200);
+            Subjects subjectFromMgr = mgr.GetAll().Last();
             Assert.AreEqual(aSubject, subjectFromMgr);
+            mgr.DeleteItem(subjectFromMgr.Id);
         }
-      
+
 
     }
 }

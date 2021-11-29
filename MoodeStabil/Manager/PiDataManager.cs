@@ -19,7 +19,8 @@ namespace MoodeStabil.Manager
             List<Subjects> subjects = _database.Subjects.ToList<Subjects>();
             foreach (Subjects sub in subjects)
             {
-                if (sub.SubjectMeetTime.Value.Date.DayOfWeek == DayOfWeek.Monday && date.DayOfWeek == DayOfWeek.Monday)
+                if (sub.SubjectMeetTime.Value.Date.DayOfWeek == DayOfWeek.Monday && date.DayOfWeek == DayOfWeek.Monday
+                    && sub.SubjectMeetTime.Value.Hour <= date.Hour && date.Hour <= sub.SubjectMeetTime.Value.Hour+1)
                 {
                     try
                     {
@@ -33,7 +34,8 @@ namespace MoodeStabil.Manager
                         return false;
                     }
                 }
-                else if (sub.SubjectMeetTime.Value.Date.DayOfWeek == DayOfWeek.Tuesday && date.DayOfWeek == DayOfWeek.Tuesday)
+                else if (sub.SubjectMeetTime.Value.Date.DayOfWeek == DayOfWeek.Tuesday && date.DayOfWeek == DayOfWeek.Tuesday
+                    && sub.SubjectMeetTime <= date && sub.SubjectMeetTime.Value.Hour <= sub.SubjectMeetTime.Value.Hour + 1)
                 {
                     try
                     {
@@ -48,7 +50,8 @@ namespace MoodeStabil.Manager
                         return false;
                     }
                 }
-                else if (sub.SubjectMeetTime.Value.Date.DayOfWeek == DayOfWeek.Wednesday && date.DayOfWeek == DayOfWeek.Wednesday)
+                else if (sub.SubjectMeetTime.Value.Date.DayOfWeek == DayOfWeek.Wednesday && date.DayOfWeek == DayOfWeek.Wednesday
+                    && sub.SubjectMeetTime <= date && sub.SubjectMeetTime.Value.Hour <= sub.SubjectMeetTime.Value.Hour + 1)
                 {
                     try
                     {
@@ -63,7 +66,8 @@ namespace MoodeStabil.Manager
                         return false;
                     }
                 }
-                else if (sub.SubjectMeetTime.Value.Date.DayOfWeek == DayOfWeek.Thursday && date.DayOfWeek == DayOfWeek.Thursday)
+                else if (sub.SubjectMeetTime.Value.Date.DayOfWeek == DayOfWeek.Thursday && date.DayOfWeek == DayOfWeek.Thursday
+                    && sub.SubjectMeetTime <= date && sub.SubjectMeetTime.Value.Hour <= sub.SubjectMeetTime.Value.Hour + 1)
                 {
                     try
                     {
@@ -78,7 +82,8 @@ namespace MoodeStabil.Manager
                         return false;
                     }
                 }
-                else if (sub.SubjectMeetTime.Value.Date.DayOfWeek == DayOfWeek.Friday && date.DayOfWeek == DayOfWeek.Friday)
+                else if (sub.SubjectMeetTime.Value.Date.DayOfWeek == DayOfWeek.Friday && date.DayOfWeek == DayOfWeek.Friday
+                    && sub.SubjectMeetTime <= date && sub.SubjectMeetTime.Value.Hour <= sub.SubjectMeetTime.Value.Hour + 1)
                 {
                     try
                     {
@@ -101,14 +106,21 @@ namespace MoodeStabil.Manager
         {
             List<Subjects> subjects = _database.Subjects.ToList();
             List<PiData> piDatas = _database.PiData.ToList();
-            
-            //var ListpiDatas = from b in piDatas
-            //                  from c in subjects
-            //                  where b.SubjectId == c.Id
-            //                  select b.Subject = c;
-            
+
             
             return piDatas;
+        }
+
+        public List<PiData> SearchPiDatas()
+        {
+            DateTime time = DateTime.Now;
+            List<PiData> piDatas = GetAllPiData();
+
+            IEnumerable<PiData> result = piDatas.Where(c => c.Date.Value.Day == time.Day || c.Date.Value.Day == time.Day - 1 ||
+          c.Date.Value.Day == time.Day - 2 || c.Date.Value.Day == time.Day - 3 || c.Date.Value.Day == time.Day - 4 ||
+          c.Date.Value.Day == time.Day - 5
+                );
+            return result.ToList();
         }
     }
 }
