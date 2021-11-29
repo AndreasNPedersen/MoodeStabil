@@ -1,4 +1,4 @@
-const baseUrl = 'http://dr-rest.azurewebsites.net/api/Model';
+const baseUrl = 'http://localhost:60475/api';
 
 Vue.createApp({
     data() {
