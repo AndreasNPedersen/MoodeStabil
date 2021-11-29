@@ -16,9 +16,9 @@ namespace MoodeStabilProjekt.Controllers
     {
         private readonly IManageSubjects mgr;
 
-        public SubjectsController()
+        public SubjectsController(AndreasDatabaseContext andreasDatabaseContext)
         {
-            mgr = new ManageSubjects();
+            mgr = new ManageSubjects(andreasDatabaseContext);
         }
 
         [HttpGet]
@@ -58,7 +58,7 @@ namespace MoodeStabilProjekt.Controllers
 
             };
 
-            mgr.Update(subjects);
+            mgr.AddSubject(subjects);
 
             return CreatedAtAction(nameof(GetSubject), new { id = subjects.Id }, subjects.AsDto());
         }
@@ -84,6 +84,23 @@ namespace MoodeStabilProjekt.Controllers
             return NoContent();
            
         }
-        
+        [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+
+        public ActionResult DeleteItem(int id)
+        {
+            var existingItem = mgr.GetById(id);
+
+            if (existingItem is null)
+            {
+                return NotFound();
+            }
+
+            mgr.DeleteItem(id);
+
+            return NoContent();
+        }
+
     }
 }
