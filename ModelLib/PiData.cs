@@ -31,10 +31,9 @@ namespace ModelLib
         {
             return obj is PiData data &&
                    Id == data.Id &&
-                   DateFromSubject == data.DateFromSubject &&
-                   Date == data.Date &&
-                   SubjectId == data.SubjectId &&
-                   EqualityComparer<Subjects>.Default.Equals(Subject, data.Subject);
+                   DateFromSubject.Value.Date.Day == data.DateFromSubject.Value.Date.Day &&
+                   Date.Value.Day == data.Date.Value.Day &&
+                   SubjectId == data.SubjectId;
         }
     }
 }
