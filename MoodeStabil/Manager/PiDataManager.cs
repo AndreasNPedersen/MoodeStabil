@@ -35,7 +35,7 @@ namespace MoodeStabil.Manager
                     }
                 }
                 else if (sub.SubjectMeetTime.Value.Date.DayOfWeek == DayOfWeek.Tuesday && date.DayOfWeek == DayOfWeek.Tuesday
-                    && sub.SubjectMeetTime <= date && sub.SubjectMeetTime.Value.Hour <= sub.SubjectMeetTime.Value.Hour + 1)
+                    && sub.SubjectMeetTime <= date && date.Hour <= sub.SubjectMeetTime.Value.Hour + 1)
                 {
                     try
                     {
@@ -51,7 +51,7 @@ namespace MoodeStabil.Manager
                     }
                 }
                 else if (sub.SubjectMeetTime.Value.Date.DayOfWeek == DayOfWeek.Wednesday && date.DayOfWeek == DayOfWeek.Wednesday
-                    && sub.SubjectMeetTime <= date && sub.SubjectMeetTime.Value.Hour <= sub.SubjectMeetTime.Value.Hour + 1)
+                    && sub.SubjectMeetTime <= date && date.Hour <= sub.SubjectMeetTime.Value.Hour + 1)
                 {
                     try
                     {
@@ -67,7 +67,7 @@ namespace MoodeStabil.Manager
                     }
                 }
                 else if (sub.SubjectMeetTime.Value.Date.DayOfWeek == DayOfWeek.Thursday && date.DayOfWeek == DayOfWeek.Thursday
-                    && sub.SubjectMeetTime <= date && sub.SubjectMeetTime.Value.Hour <= sub.SubjectMeetTime.Value.Hour + 1)
+                    && sub.SubjectMeetTime <= date && date.Hour <= sub.SubjectMeetTime.Value.Hour + 1)
                 {
                     try
                     {
@@ -83,7 +83,7 @@ namespace MoodeStabil.Manager
                     }
                 }
                 else if (sub.SubjectMeetTime.Value.Date.DayOfWeek == DayOfWeek.Friday && date.DayOfWeek == DayOfWeek.Friday
-                    && sub.SubjectMeetTime <= date && sub.SubjectMeetTime.Value.Hour <= sub.SubjectMeetTime.Value.Hour + 1)
+                    && sub.SubjectMeetTime <= date && date.Hour <= sub.SubjectMeetTime.Value.Hour + 1)
                 {
                     try
                     {
