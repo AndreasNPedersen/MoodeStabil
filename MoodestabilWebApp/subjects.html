@@ -16,34 +16,33 @@
         
 
         
-        <button id="enterbut" class="btn btn-primary" v-on:click="getAllSubjects()">Enter</button>
         
+        <h2 class="text-center">Fag</h2>
         
 
         
         <table class="table">
-            <thead>
-                <tr>
-                    <th v-for="(name, value) in subjects[0]"> {{value}}</th>
+            
+                <th>Fag</th>
+                <th>Mødestabil</th>
+                <tr v-for="subject in subjects">
+                    <td>{{subject.subjectName}}</td>
+                    <td>{{subject.subjectMeetTime}}</td>
                 </tr>
-            </thead>
-            <tbody id="restlist2">
-                <tr v-for="row in subjects">
-                    <td v-for="prod in row">{{prod}}</td>
-                </tr>
-            </tbody>
+            
+           
         </table>
   
-  
-
-        <p>Post:</p>
+        <button id="enterbut" class="btn btn-primary float-right" v-on:click="getAllSubjects()">Updater Table</button>
+        <h4 style="color: red;">{{messageError}}</h4>
+        <p>Tilføj:</p>
         <form method="POST" v-on:submit.prevent="onSubmit">
           
             <input v-model.lazy="addData.subjectName" placeholder="Indsæt navn på fag"/>
-            <input type="date" v-model="addData.subjectMeetTime" placeholder="Indsæt mødetid"/>
+            <input type="datetime-local" v-model="addData.subjectMeetTime" placeholder="Indsæt mødetid"/>
            
             <button class="btn btn-primary" v-on:click="addSubject()">Tilføj</button>
-            <p>{{messageError}}</p>
+            
         </form>
         
         <p>Delete</p>
@@ -54,7 +53,7 @@
         <form method="POST" v-on:submit.prevent="onSubmit">
             <input v-model.number="updateData.id">
             <input v-model="updateData.subjectName" placeholder="indsæt et navn"/>
-            <input type="date" v-model="updateData.subjectMeetTime" placeholder="indsæt mødetid"/>
+            <input type="datetime-local" v-model="updateData.subjectMeetTime" placeholder="indsæt mødetid"/>
             
             <button class="btn btn-primary" v-on:click="updateSubject()">Updater</button>
         </form>

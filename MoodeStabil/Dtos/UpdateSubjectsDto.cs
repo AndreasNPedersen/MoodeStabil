@@ -8,7 +8,7 @@ namespace MoodeStabilProjekt.Dtos
 {
     public record UpdateSubjectsDto
     {
-        
+        public int Id { get; set; }
         public DateTime? SubjectMeetTime { get; set; }
         
         public string SubjectName { get; set; }

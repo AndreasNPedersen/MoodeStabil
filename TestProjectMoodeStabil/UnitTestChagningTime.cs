@@ -15,6 +15,8 @@ namespace TestProjectMoodeStabil
     public class UnitTestChagningTime
     {
         //private IManageSubjects mgr = new ManageSubjects(new AndreasDatabaseContext());
+        static string DriverDirectory = "C:\\Driver";
+        static string URL = "";
         private  List<Subjects> subjects;
         IManageSubjects mgr;
 
