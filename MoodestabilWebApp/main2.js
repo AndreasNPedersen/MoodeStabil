@@ -5,6 +5,7 @@ Vue.createApp({
     data() {
         return {
             subjects:[],
+            
             IdToGetBy: -1,
             updateData: { id: 0, subjectName: "", subjectMeetTime: date1},
             addData: { subjectName: "", subjectMeetTime: date1 },
