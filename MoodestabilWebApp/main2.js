@@ -1,5 +1,5 @@
-//const baseUrl = 'http://moodestabil.azurewebsites.net/api/subjects';
-const baseUrl = "http://localhost:60475/api/Subjects";
+const baseUrl = 'http://moodestabil.azurewebsites.net/api/subjects';
+//const baseUrl = "http://localhost:60475/api/Subjects";
 let date1 = new Date().now;
 Vue.createApp({
     data() {
