@@ -1,4 +1,5 @@
-const baseUrl = 'http://moodestabil.azurewebsites.net/api/subjects';
+//const baseUrl = 'http://moodestabil.azurewebsites.net/api/subjects';
+const baseUrl = "http://localhost:60475/api/Subjects";
 let date1 = new Date().now;
 Vue.createApp({
     data() {
@@ -9,6 +10,9 @@ Vue.createApp({
             addData: { subjectName: "", subjectMeetTime: date1 },
             messageError: ""
         }
+    },
+    created() {
+        this.getAllSubjects()
     },
     methods: {
         // Subject Methods
@@ -22,8 +26,8 @@ Vue.createApp({
         async addSubject() {
             try {
                 response = await axios.post(baseUrl, this.addData)
+                console.log(response)
                 
-                this.get()
                 
             } catch (e) {
                 alert(e.message)
@@ -33,8 +37,7 @@ Vue.createApp({
             const url = baseUrl + "/" + this.updateData.id
             try {
                 response = await axios.put(url, this.updateData)
-                
-                this.get()
+                console.log(response)
             } catch (e) {
                 alert(e.message)
             }
@@ -49,6 +52,7 @@ Vue.createApp({
         async get(url) {
             try {
                 const response = await axios.get(url)
+                
                 this.subjects = await response.data
                 
             } catch (e) {

@@ -35,7 +35,11 @@ namespace MoodeStabil
             });
             services.AddDbContext<AndreasDatabaseContext>(opt =>
                 opt.UseSqlServer("Data Source=andreas-zealand-server-dk.database.windows.net;Initial Catalog=Andreas-database;User ID=Andreas;Password=SecretPassword!;Connect Timeout=30;Encrypt=True;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"));
-           
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAny",
+                    builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+            });
 
         }
 
@@ -50,7 +54,7 @@ namespace MoodeStabil
             }
 
             app.UseRouting();
-           
+            app.UseCors("AllowAny");
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

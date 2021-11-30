@@ -63,7 +63,7 @@ namespace MoodeStabilProjekt.Controllers
             return CreatedAtAction(nameof(GetSubject), new { id = subjects.Id }, subjects.AsDto());
         }
 
-        [HttpPut]
+        [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public ActionResult UpdateSubject(int id, [FromBody] UpdateSubjectsDto updateSubjectsDto)
@@ -76,6 +76,7 @@ namespace MoodeStabilProjekt.Controllers
             }
             Subjects updatedSubject = existingSubject with
             {
+                SubjectName = updateSubjectsDto.SubjectName,
                 SubjectMeetTime = updateSubjectsDto.SubjectMeetTime
             };
 
