@@ -25,6 +25,7 @@ namespace TestProjectMoodeStabil
 
         // WEB ELEMENTS
         // Simple Elements
+        static IWebElement updateButton;
         static IWebElement downloadButton;
 
         // Dropdowns
@@ -43,8 +44,9 @@ namespace TestProjectMoodeStabil
             driver.Navigate().GoToUrl(URL);
 
             // Find Elements to test
-            downloadButton      = driver.FindElement(By.Id("downloadButton"));
-            datePicker          = driver.FindElement(By.Id("datePicker"));
+            updateButton      = driver.FindElement(By.Id("updateButton"));
+            downloadButton    = driver.FindElement(By.Id("downloadButton"));
+            datePicker        = driver.FindElement(By.Id("datePicker"));
 
             dateRange.SelectByValue("Last 30 Days");
         }
@@ -61,7 +63,7 @@ namespace TestProjectMoodeStabil
             Thread.Sleep(500);
             try
             {
-                downloadButton.Click();
+                updateButton.Click();
             }
             catch
             {

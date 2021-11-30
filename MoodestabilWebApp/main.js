@@ -125,8 +125,9 @@ Vue.createApp({
         },
         async getLastFiveDays() {
             try {
-                const response = await axios.get(baseUrl + "/PiData/GetLastFiveDays")
-                this.piDataList = await response.data
+                const response = await axios.get(baseUrl + "/PiData/GetLastFiveDays");
+                this.piDataList = await response.data;
+
                 updateCharts(this.piDataList);
             } catch (e) {
                 alert(e.message)
