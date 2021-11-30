@@ -16,6 +16,7 @@ namespace MoodeStabil.Manager
         }
         public bool AddPiData(DateTime date)
         {
+            date.AddHours(1);
             List<Subjects> subjects = _database.Subjects.ToList<Subjects>();
             foreach (Subjects sub in subjects)
             {
@@ -35,7 +36,7 @@ namespace MoodeStabil.Manager
                     }
                 }
                 else if (sub.SubjectMeetTime.Value.Date.DayOfWeek == DayOfWeek.Tuesday && date.DayOfWeek == DayOfWeek.Tuesday
-                    && sub.SubjectMeetTime <= date && date.Hour <= sub.SubjectMeetTime.Value.Hour + 1)
+                    && sub.SubjectMeetTime.Value.Hour <= date.Hour && date.Hour <= sub.SubjectMeetTime.Value.Hour + 1)
                 {
                     try
                     {
@@ -51,7 +52,7 @@ namespace MoodeStabil.Manager
                     }
                 }
                 else if (sub.SubjectMeetTime.Value.Date.DayOfWeek == DayOfWeek.Wednesday && date.DayOfWeek == DayOfWeek.Wednesday
-                    && sub.SubjectMeetTime <= date && date.Hour <= sub.SubjectMeetTime.Value.Hour + 1)
+                    && sub.SubjectMeetTime.Value.Hour <= date.Hour && date.Hour <= sub.SubjectMeetTime.Value.Hour + 1)
                 {
                     try
                     {
@@ -67,7 +68,7 @@ namespace MoodeStabil.Manager
                     }
                 }
                 else if (sub.SubjectMeetTime.Value.Date.DayOfWeek == DayOfWeek.Thursday && date.DayOfWeek == DayOfWeek.Thursday
-                    && sub.SubjectMeetTime <= date && date.Hour <= sub.SubjectMeetTime.Value.Hour + 1)
+                    && sub.SubjectMeetTime.Value.Hour <= date.Hour && date.Hour <= sub.SubjectMeetTime.Value.Hour + 1)
                 {
                     try
                     {
@@ -83,7 +84,7 @@ namespace MoodeStabil.Manager
                     }
                 }
                 else if (sub.SubjectMeetTime.Value.Date.DayOfWeek == DayOfWeek.Friday && date.DayOfWeek == DayOfWeek.Friday
-                    && sub.SubjectMeetTime <= date && date.Hour <= sub.SubjectMeetTime.Value.Hour + 1)
+                    && sub.SubjectMeetTime.Value.Hour <= date.Hour && date.Hour <= sub.SubjectMeetTime.Value.Hour + 1)
                 {
                     try
                     {
