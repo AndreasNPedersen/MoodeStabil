@@ -123,6 +123,7 @@ Vue.createApp({
                 alert(e.message);
             }
         },
+        // Instead of getting all, just get the last five days. This is what we want for the charts
         async getLastFiveDays() {
             try {
                 const response = await axios.get(baseUrl + "/PiData/GetLastFiveDays");

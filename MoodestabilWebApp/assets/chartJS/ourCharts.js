@@ -36,87 +36,90 @@ let studentsChart2 = new Chart(chartTwo, {
 })
 
 function updateCharts(piData) {
-    this.piDatas = piData;
-    // Push first dataset to begin process of checking against dates
-    dayOneData.push(piData[0]);
-    
-    // Create date variables that we use to sort data
-    const d = new Date(dayOneData[0].date);
-    let date1 = d.getDate();
-    let date2 = 0;
-    let date3 = 0;
-    let date4 = 0;
-    let date5 = 0;
-    
-    // Update chart day one with initial data
-    chartLabels[0] = dayOneData[0].date;
-    chartData[0] = dayOneData.length;
+    if (piData.length > 0)
+    {
+        this.piDatas = piData;
+        // Push first dataset to begin process of checking against dates
+        dayOneData.push(piData[0]);
+        
+        // Update chart day one with initial data
+        chartLabels[0] = dayOneData[0].date;
+        chartData[0] = dayOneData.length;
+        
+        // Create date variables that we use to sort data
+        const d = new Date(dayOneData[0].date);
+        let date1 = d.getDate();
+        let date2 = 0;
+        let date3 = 0;
+        let date4 = 0;
+        let date5 = 0;
 
-    // This absolute chonker sorts the contents of the PiData into different days, 
-    // so we can display them nicely in our charts!
-    this.piDatas.forEach(p => {
-        // Update data arrays
-        const pDate = new Date(p.date);
+        // This absolute chonker sorts the contents of the PiData into different days, 
+        // so we can display them nicely in our charts!
+        this.piDatas.forEach(p => {
+            // Update data arrays
+            const pDate = new Date(p.date);
 
-        if(pDate.getDate() == date1)
-        {
-            dayOneData.push(p);
-            console.log("Pushed to Day One Data");
+            if(pDate.getDate() == date1)
+            {
+                dayOneData.push(p);
+                console.log("Pushed to Day One Data");
 
-            // Update chart with initial data
-            chartLabels[0] = date1;
-            // chartLabels[1] = date1+1;
-            // chartLabels[2] = date1+2;
-            // chartLabels[3] = date1+3;
-            // chartLabels[4] = date1+4;
+                // Update chart with initial data
+                chartLabels[0] = date1;
+                // chartLabels[1] = date1+1;
+                // chartLabels[2] = date1+2;
+                // chartLabels[3] = date1+3;
+                // chartLabels[4] = date1+4;
 
-            chartData[0] = dayOneData.length;
-        }
+                chartData[0] = dayOneData.length;
+            }
 
-        else if (dayTwoData.length == 0 || pDate.getDate() == date2)
-        {
-            dayTwoData.push(p);
-            tempD = new Date(dayTwoData[0].date);
-            date2 = tempD.getDate();
+            else if (dayTwoData.length == 0 || pDate.getDate() == date2)
+            {
+                dayTwoData.push(p);
+                tempD = new Date(dayTwoData[0].date);
+                date2 = tempD.getDate();
 
-            // Update chart with data
-            chartLabels[1] = date2;
-            chartData[1] = dayTwoData.length;
-        }
+                // Update chart with data
+                chartLabels[1] = date2;
+                chartData[1] = dayTwoData.length;
+            }
 
-        else if (dayThreeData.length == 0 || pDate.getDate() == date3)
-        {
-            dayThreeData.push(p);
-            tempD = new Date(dayThreeData[0].date);
-            date3 = tempD.getDate();
+            else if (dayThreeData.length == 0 || pDate.getDate() == date3)
+            {
+                dayThreeData.push(p);
+                tempD = new Date(dayThreeData[0].date);
+                date3 = tempD.getDate();
 
-            // Update chart with data
-            chartLabels[2] = date3;
-            chartData[2] = dayThreeData.length;
-        }
+                // Update chart with data
+                chartLabels[2] = date3;
+                chartData[2] = dayThreeData.length;
+            }
 
-        else if (dayFourData.length == 0 || pDate.getDate() == date4)
-        {
-            dayFourData.push(p);
-            tempD = new Date(dayFourData[0].date);
-            date4 = tempD.getDate();
+            else if (dayFourData.length == 0 || pDate.getDate() == date4)
+            {
+                dayFourData.push(p);
+                tempD = new Date(dayFourData[0].date);
+                date4 = tempD.getDate();
 
-            // Update chart with data
-            chartLabels[3] = date4;
-            chartData[3] = dayFourData.length;
-        }
+                // Update chart with data
+                chartLabels[3] = date4;
+                chartData[3] = dayFourData.length;
+            }
 
-        else if (dayFiveData.length == 0 || pDate.getDate() == date5)
-        {
-            dayFiveData.push(p);
-            tempD = new Date(dayFiveData[0].date);
-            date5 = tempD.getDate();
+            else if (dayFiveData.length == 0 || pDate.getDate() == date5)
+            {
+                dayFiveData.push(p);
+                tempD = new Date(dayFiveData[0].date);
+                date5 = tempD.getDate();
 
-            // Update chart with data
-            chartLabels[4] = date5;
-            chartData[4] = dayFiveData.length;
-        }
-    });
+                // Update chart with data
+                chartLabels[4] = date5;
+                chartData[4] = dayFiveData.length;
+            }
+        });
+    }
 
     if (chart1Created == false)
     {
@@ -138,4 +141,5 @@ function updateCharts(piData) {
             options: {}
         })
     }
+    else { studentsChart1 = chartOne; }
 }
