@@ -35,5 +35,10 @@ namespace ModelLib
                    Date.Value.Day == data.Date.Value.Day &&
                    SubjectId == data.SubjectId;
         }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Id, DateFromSubject, Date, SubjectId, Subject);
+        }
     }
 }

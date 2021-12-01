@@ -47,6 +47,12 @@ namespace ModelLib
                    &&
                    SubjectMeetTime.Value.Month == subjects.SubjectMeetTime.Value.Month;
         }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+
         public override string ToString()
         {
             return $"Id: {Id}, SubjectName: {SubjectName}, SubjectMeetTime:{SubjectMeetTime}";
