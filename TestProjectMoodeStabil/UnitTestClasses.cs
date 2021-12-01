@@ -16,7 +16,7 @@ namespace TestProjectMoodeStabil
         public void PiDataConstructorTest()
         {
             Assert.ThrowsException<ArgumentNullException>(() => new PiData(null, null, null));
-            //Resource group please
+            //Resource group please ..
         }
 
         // Subjects Tests ------------------------------------------------------------------------- Subjects Tests
