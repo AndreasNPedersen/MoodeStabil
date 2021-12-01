@@ -48,27 +48,27 @@ Vue.createApp({
             this.get(baseUrl);
         },
         async getSubjectById(id) {
-            const url = baseUrl + "/Subjects/" + id
+            const url = baseUrl + "/Subjects/" + id;
             this.get(url);
         },
         async addSubject() {
             try {
-                response = await axios.post(baseUrl, this.subjectInfo)
-                this.addMessage = "response " + response.status + " " + response.statusText
-                this.get()
+                response = await axios.post(baseUrl, this.subjectInfo);
+                this.addMessage = "response " + response.status + " " + response.statusText;
+                this.get();
                 console.log(response.statusText);
             } catch (e) {
-                alert(e.message)
+                alert(e.message);
             }
         },
         async updateSubject() {
-            const url = baseUrl + "/SubjectsController/" + this.subjectInfo.subject.id
+            const url = baseUrl + "/SubjectsController/" + this.subjectInfo.subject.id;
             try {
-                response = await axios.put(url, this.subjectInfo)
-                this.updateMessage = "response " + response.status + " " + response.statusText
-                this.get()
+                response = await axios.put(url, this.subjectInfo);
+                this.updateMessage = "response " + response.status + " " + response.statusText;
+                this.get();
             } catch (e) {
-                alert(e.message)
+                alert(e.message);
             }
         },
         // Pi Data
@@ -76,37 +76,37 @@ Vue.createApp({
             this.get(baseUrl + "/PiData");
         },
         async getAllPiDataFiveDays() {
-            const url = baseUrl + "/PiDataController/days/5"
+            const url = baseUrl + "/PiDataController/days/5";
             this.get(url);
         },
         async getPiDataById(id) {
-            const url = baseUrl + "/PiDataController/" + id
+            const url = baseUrl + "/PiDataController/" + id;
             this.get(url);
         },
         async addPiData() {
             try {
-                response = await axios.post(baseUrl, this.piDataInfo)
-                this.addMessage = "response " + response.status + " " + response.statusText
-                this.get()
+                response = await axios.post(baseUrl, this.piDataInfo);
+                this.addMessage = "response " + response.status + " " + response.statusText;
+                this.get();
                 console.log(response.statusText);
             } catch (e) {
-                alert(e.message)
+                alert(e.message);
             }
         },
         async updatePiData() {
-            const url = baseUrl + "/PiDataController/" + this.piDataInfo.piData.id
+            const url = baseUrl + "/PiDataController/" + this.piDataInfo.piData.id;
             try {
-                response = await axios.put(url, this.piDataInfo)
-                this.updateMessage = "response " + response.status + " " + response.statusText
-                this.get()
+                response = await axios.put(url, this.piDataInfo);
+                this.updateMessage = "response " + response.status + " " + response.statusText;
+                this.get();
             } catch (e) {
-                alert(e.message)
+                alert(e.message);
             }
         },
         async deletePiData(id) {
-            const deleteUrl = baseUrl + "/PiDataController/" + id
+            const deleteUrl = baseUrl + "/PiDataController/" + id;
             try {
-                response = await axios.delete(deleteUrl)
+                response = await axios.delete(deleteUrl);
                 this.deleteMessage = response.status + " " + response.statusText
                 this.get()
             } catch (e) {
@@ -116,11 +116,11 @@ Vue.createApp({
         // Actual Get Method
         async get(url) {
             try {
-                const response = await axios.get(url)
-                this.piDataList = await response.data
+                const response = await axios.get(url);
+                this.piDataList = await response.data;
                 updateCharts(this.piDataList);
             } catch (e) {
-                alert(e.message)
+                alert(e.message);
             }
         },
         async getLastFiveDays() {
@@ -130,7 +130,7 @@ Vue.createApp({
 
                 updateCharts(this.piDataList);
             } catch (e) {
-                alert(e.message)
+                alert(e.message);
             }
         },
         // Filter Methods
