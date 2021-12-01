@@ -27,8 +27,7 @@ namespace UDPReciverPI
         {
             var dateTimeNow = DateTime.Now;
             // Create new DoorTracking object with the newly created properties
-            DoorData resetDoorTracking = new DoorData(dateTimeNow);
-          //  DoorData doorTracking = await TaskController.AddDoorDataAsync(resetDoorTracking);
+            //  DoorData doorTracking = await TaskController.AddDoorDataAsync(resetDoorTracking);
         }
 
         static void Main(string[] args)
