@@ -11,5 +11,7 @@ namespace MoodeStabil.Manager
         List<PiData> GetAllPiData();
         bool AddPiData(DateTime date);
         List<PiData> SearchPiDatas();
+        List<PiData> SortPiData(DateTime date1, DateTime data2);
+        bool RequestSendingEmail(DateTime date1, DateTime data2, string toEmail);
     }
 }

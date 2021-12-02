@@ -33,6 +33,19 @@ namespace MoodeStabil.Controllers
         {
             return mgr.SearchPiDatas();
         }
+
+        [HttpGet("Sort")]
+        public IEnumerable<PiData> GetSortedPiDatas([FromQuery] DateTime value1, DateTime value2)
+        {
+            return mgr.SortPiData(value1,value2);
+        }
+
+        [HttpGet("SendReport")]
+        public bool GetSortedPiDatas([FromQuery] DateTime value1, DateTime value2, string toEmail)
+        {
+            return mgr.RequestSendingEmail(value1, value2,toEmail);
+        }
+
         // POST api/<PiDataController>
         // DateTime value should look exactly like this : "2021-11-25T21:18:19.2693889+01:00" (Json format of DateTime.Now)
         [HttpPost]
