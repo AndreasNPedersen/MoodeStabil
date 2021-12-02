@@ -11,14 +11,6 @@ namespace ModelLib
         public PiData()
         {
         }
-
-        public int Id { get; set; }
-        public DateTime? DateFromSubject { get; set; }
-        public DateTime? Date { get; set; }
-        public int? SubjectId { get; set; }
-
-        public virtual Subjects Subject { get; set; }
-
         public PiData(DateTime? dateFromSubject, DateTime? date, Subjects subject)
         {
             DateFromSubject = dateFromSubject;
@@ -27,6 +19,43 @@ namespace ModelLib
             SubjectId = subject.Id;
         }
 
+        private DateTime? _dateFromSubject;
+        private DateTime? _date;
+        private Subjects _subject;
+
+
+        public int Id { get; set; }
+        public DateTime? DateFromSubject 
+        {
+            get => _dateFromSubject; 
+            set
+            {
+                if (value == null) throw new ArgumentNullException();
+                _dateFromSubject = value;
+            }
+        }
+        public DateTime? Date
+        {
+            get => _date;
+            set
+            {
+                if (value == null) throw new ArgumentNullException();
+                _date = value;
+            }
+        }
+        public int? SubjectId { get; set; }
+
+        public virtual Subjects Subject
+        {
+            get => _subject;
+            set
+            {
+                if (value == null) throw new ArgumentNullException();
+                _subject = value;
+            }
+        }
+
+
         public override bool Equals(object obj)
         {
             return obj is PiData data &&
@@ -34,6 +63,11 @@ namespace ModelLib
                    DateFromSubject.Value.Date.Day == data.DateFromSubject.Value.Date.Day &&
                    Date.Value.Day == data.Date.Value.Day &&
                    SubjectId == data.SubjectId;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Id, DateFromSubject, Date, SubjectId, Subject);
         }
     }
 }

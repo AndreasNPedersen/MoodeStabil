@@ -31,10 +31,30 @@ namespace ModelLib
         }
 
         private static int idCounter = 0;
-        public int Id { get; set; }
-        public string SubjectName { get; set; }
-        public DateTime? SubjectMeetTime { get; set; }
+        private int _id;
+        private string _subjectName;
 
+        public int Id 
+        {
+            get => _id;
+            set
+            {
+                if (value < 0) throw new ArgumentOutOfRangeException();
+                _id = value;
+            }
+        }
+        public string SubjectName 
+        {
+            get => _subjectName;
+            set
+            {
+                if (value == null) { throw new ArgumentNullException(); }
+                if (value.Length < 1) { throw new ArgumentException(); }
+                _subjectName = value;
+            }
+        }
+
+        public DateTime? SubjectMeetTime { get; set; }
 
         public virtual bool Equals(Subjects obj)
         {
@@ -47,6 +67,12 @@ namespace ModelLib
                    &&
                    SubjectMeetTime.Value.Month == subjects.SubjectMeetTime.Value.Month;
         }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+
         public override string ToString()
         {
             return $"Id: {Id}, SubjectName: {SubjectName}, SubjectMeetTime:{SubjectMeetTime}";

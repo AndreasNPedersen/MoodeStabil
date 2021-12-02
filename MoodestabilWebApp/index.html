@@ -120,11 +120,18 @@
         <div class="mt-5"></div>
         <!-- Spacer Big -->
         <div class="row">
-            <div class="col-10">
+            <div class="col-8">
                 <h2>Fravær</h2>
             </div>
             <div class="col-md-2 col-sm-12">
-                <button class="btn btn-primary w-100" id="downloadButton"><div class="fa fa-download fa-pull-left mt-1"></div>Download</button>
+                <button class="btn btn-secondary w-100" id="updateButton" @click="getLastFiveDays">
+                    <div class="fa fa-rotate-left fa-pull-left mt-1"></div>Update
+                </button>
+            </div>
+            <div class="col-md-2 col-sm-12">
+                <button class="btn btn-primary w-100" id="downloadButton" @click="">
+                    <div class="fa fa-download fa-pull-left mt-1"></div>Download
+                </button>
             </div>
         </div>
         <!-- Spacer Small -->
@@ -187,15 +194,23 @@
         </div>
         <!-- Spacer Small -->
         <div class="row">
-            <table class="table">
+            <table class="table table-hover table-striped">
                 <thead>
                     <tr>
-                        <th v-for="{name, value} in piDataList[0]">{{value}}</th>
+                        <th scope="col">ID</th>
+                        <th scope="col">Optagelse</th>
+                        <th scope="col">Fag ID</th>
+                        <th scope="col">Fag Navn</th>
+                        <th scope="col">Fag Mødetid</th>
                     </tr>
                 </thead>
                 <body>
-                    <tr v-for="row in piDataList">
-                        <td v-for="piData in row">{{piData}}</td>
+                    <tr v-for="pi in piDataList">
+                        <th scope="row">{{pi.id}}</td>
+                        <td>{{pi.date}}</td>
+                        <td>{{pi.subjectId}}</td>
+                        <td>{{pi.subject.subjectName}}</td>
+                        <td>{{pi.subject.subjectMeetTime}}</td>
                     </tr>
                 </body>
             </table>

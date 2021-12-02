@@ -25,10 +25,14 @@
             
                 <th>Fag</th>
                 <th>Mødestabil</th>
+            <tbody id="result1">
                 <tr v-for="subject in subjects">
+                    <td>{{subject.id}}</td>
                     <td>{{subject.subjectName}}</td>
                     <td>{{subject.subjectMeetTime}}</td>
                 </tr>
+            </tbody>
+            
             
            
         </table>
@@ -36,26 +40,27 @@
         <button id="enterbut" class="btn btn-primary float-right" v-on:click="getAllSubjects()">Updater Table</button>
         <h4 style="color: red;">{{messageError}}</h4>
         <p>Tilføj:</p>
+
         <form method="POST" v-on:submit.prevent="onSubmit">
           
-            <input v-model.lazy="addData.subjectName" placeholder="Indsæt navn på fag"/>
-            <input type="datetime-local" v-model="addData.subjectMeetTime" placeholder="Indsæt mødetid"/>
+            <input id="nameForAdd" v-model.lazy="addData.subjectName" placeholder="Indsæt navn på fag"/>
+            <input id="subjectMeetTime" type="datetime-local" v-model="addData.subjectMeetTime" placeholder="Indsæt mødetid"/>
            
-            <button class="btn btn-primary" v-on:click="addSubject()">Tilføj</button>
+            <button id="addButton" class="btn btn-primary" v-on:click="addSubject()">Tilføj</button>
             
         </form>
         
         <p>Delete</p>
-        <input v-model.number="subjects.id" placeholder="indsæt et id"/>
-            <button class="btn btn-primary" v-on:click="DeleteSubject(subjects.id)">Delete</button>
+        <input id="idInputDelete" v-model.number="subjects.id" placeholder="indsæt et id"/>
+            <button id="deleteButton" class="btn btn-primary" v-on:click="DeleteSubject(subjects.id)">Delete</button>
 
         <p>Update</p>
         <form method="POST" v-on:submit.prevent="onSubmit">
-            <input v-model.number="updateData.id">
-            <input v-model="updateData.subjectName" placeholder="indsæt et navn"/>
-            <input type="datetime-local" v-model="updateData.subjectMeetTime" placeholder="indsæt mødetid"/>
+            <input id="idToBeUpdated" v-model.number="updateData.id">
+            <input id="subjectNameToBeUpdated" v-model="updateData.subjectName" placeholder="indsæt et navn"/>
+            <input id="dateTimeToBeUpdated" type="datetime-local" v-model="updateData.subjectMeetTime" placeholder="indsæt mødetid"/>
             
-            <button class="btn btn-primary" v-on:click="updateSubject()">Updater</button>
+            <button id="updateButton" class="btn btn-primary" v-on:click="updateSubject()">Updater</button>
         </form>
         </div>
     </div>
